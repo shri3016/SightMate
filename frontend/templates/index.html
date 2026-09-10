@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SightMate AI — voice screen assistant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>SightMate</h1>
+    <button id="theme-toggle" class="btn btn-ghost" aria-label="Change contrast theme">Theme</button>
+  </header>
+
+  <main id="main">
+    <p id="sample-banner" class="banner" role="status" hidden>
+      Sample mode: no model configured, so answers use built-in sample data.
+    </p>
+
+  
+    <button id="start-btn" class="start">
+      <span class="start-icon" aria-hidden="true">🎙️</span>
+      <span>Start SightMate — share my screen</span>
+    </button>
+
+    <p class="intro" id="intro">
+      Press <b>Enter</b> (or click above) to share your screen. After that, just speak.
+      Ask “what’s on my screen”, “how much is this”, or “where do I click”.
+      Say <b>“repeat”</b> to hear the last answer again, <b>“watch my screen”</b> to be told
+      about changes, or <b>“stop”</b> to stop talking.
+    </p>
+
+    <!-- Big listening indicator -->
+    <div id="listen-indicator" class="listen" hidden>
+      <span class="listen-dot" aria-hidden="true"></span>
+      <span id="listen-label" class="listen-label">Listening…</span>
+    </div>
+
+    <!-- Reliable stop (voice "stop" also works, but speaker echo can make it
+         miss — this button never does). -->
+    <button id="stop-btn" class="btn btn-ghost">Stop talking (Esc)</button>
+
+    <!-- Optional, for documents (needs a click to open the file picker) -->
+    <button id="pdf-btn" class="btn btn-ghost pdf" hidden>Read a PDF instead</button>
+    <input id="pdf-input" type="file" accept="application/pdf" class="visually-hidden" />
+
+    <!-- Status: announced politely to screen readers -->
+    <p id="status" class="status" role="status" aria-live="polite">
+      Ready. Press Enter to start.
+    </p>
+
+    <!-- Transcript is mainly for a sighted helper; answers are also spoken aloud. -->
+    <section class="transcript-section" aria-label="Conversation">
+      <h2 class="visually-hidden">Conversation transcript</h2>
+      <ol id="transcript" class="transcript" aria-live="assertive"></ol>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/voice.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/capture.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
