@@ -1,0 +1,1 @@
+"""SightMate AI backend package."""
