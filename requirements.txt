@@ -1,0 +1,8 @@
+# SightMate AI  — build dependencies
+flask>=3.0.0
+# The backend talks to any OpenAI-compatible server (Ollama / vLLM /
+# LM Studio / OpenAI-compatible) via the OpenAI SDK.
+openai>=1.0.0
+python-dotenv>=1.0.0
+
+pytest>=8.0.0
